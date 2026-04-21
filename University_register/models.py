@@ -10,7 +10,7 @@ class StudentIDCard(models.Model):
 class Student(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    course = models.ManyToManyField("Course")
+    course = models.ManyToManyField("Course", related_name="students")
     id_card = models.OneToOneField(StudentIDCard, on_delete=models.CASCADE)
 
 
@@ -30,5 +30,5 @@ class Semester(models.Model):
 class Course(models.Model):
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     description = models.OneToOneField(
-        Coursedescription, on_delete=models.CASCADE)
-    professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
+        Coursedescription, on_delete=models.PROTECT)
+    professor = models.ForeignKey(Professor, on_delete=models.PROTECT)

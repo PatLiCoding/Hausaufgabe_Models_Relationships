@@ -31,4 +31,5 @@ class Course(models.Model):
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     description = models.OneToOneField(
         Coursedescription, on_delete=models.PROTECT)
-    professor = models.ForeignKey(Professor, on_delete=models.PROTECT)
+    professor = models.ForeignKey(
+        Professor, on_delete=models.SET_NULL, null=True)
